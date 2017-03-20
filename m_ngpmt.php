@@ -12,7 +12,6 @@ echo "Monthly payroll".PHP_EOL;
 $insertString = "Select PayrollEmpID AS EmployeeNumber, Gross_Amt/12 AS MonthlyGrossPay, Net_Pay/12 AS MonthlyNetPay from EmployeePayroll".PHP_EOL;
 echo $insertString.PHP_EOL;
 $results = $db->query($insertString);
-print_r($results);
 while ($obj = $results->fetch_object())
 {
     print_r($obj);

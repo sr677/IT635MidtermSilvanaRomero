@@ -1,6 +1,8 @@
 #!/usr/bin/php
 <?php
 
+$PayrollEmpID = $argv[1];
+
 $db = new mysqli('localhost','root','it635','Payroll');
 if ($db->connect_errno > 0)
 {
@@ -8,11 +10,9 @@ if ($db->connect_errno > 0)
    exit(0);
 }
 
-echo "Annual payroll".PHP_EOL;
-$insertString = "Select PayrollEmpID AS EmployeeNumber, Gross_Amt AS AnnualGrossPay, Net_Pay AS AnnualNetPay from EmployeePayroll".PHP_EOL;
-echo $insertString.PHP_EOL;
-$results = $db->query($insertString);
-print_r($results);
+echo "attempting to execute this SQL:".PHP_EOL;
+$sql = "Select PayrollEmpID AS EmployeeNumber, Gross_Amt AS AnnualGrossPay, Net_Pay AS AnnualNetPay from EmployeePayroll WHERE PayrollEmpID = '$PayrollEmpID'".PHP_EOL;
+$results = $db->query($sql);
 while ($obj = $results->fetch_object())
 {
     print_r($obj);
